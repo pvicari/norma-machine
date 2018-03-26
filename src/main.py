@@ -1,11 +1,9 @@
-from norma_machine import NormaMachine
-#from .norma_machine import NormaMachine
+from src.norma_machine import NormaMachine
 
 nm = NormaMachine()
-print(nm)
-nm.registers["A"].magnitude = 3
-print(nm)
 
-
-B[sinal] = 0;
-B[magnitude] = 4;
+nm.set_n_to_reg("A",8)
+nm.set_n_to_reg("A",1)
+nm.set_n_to_reg("A",2)
+nm.set_n_to_reg("A",-7)
+nm.set_n_to_reg("A",-2)
