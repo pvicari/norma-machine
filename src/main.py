@@ -15,10 +15,10 @@ def main():
     nm.push_to_stack(3)
     nm.push_to_stack(3)
     nm.pop_from_stack()
-    nm.pop_from_stack()
-    nm.pop_from_stack()
 
-    # verificar o pq da falso
+    nm.factorial(5)
+    nm.factorial(4)
+    nm.factorial(-4)
 
 
 # Central point for all the program startup
