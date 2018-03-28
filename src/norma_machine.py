@@ -8,7 +8,7 @@ class NormaMachine:
             D={"signal": 0, "magnitude": 0},
         )
         self.stack = []
-        self.stack_pointer = 0
+        self.stack_pointer = -1  # pilha vazia
 
     def __str__(self):
         msg = ""
@@ -29,7 +29,7 @@ class NormaMachine:
         print("Pushing {} to the stack".format(value))
         # Jeito certo
         self.stack.append(value)
-        self.stack_pointer = self.stack.index(self.stack[-1])
+        self.stack_pointer += 1
         print(self)
 
     def pop_from_stack(self, reg="A"):
@@ -43,14 +43,14 @@ class NormaMachine:
         print("Popping the stack".format(reg))
         if len(self.stack) == 0:
             print("Stack is empty")
-            self.stack_pointer = 0
+            self.stack_pointer = -1
         else:
             val = self.stack.pop()
+            self.stack_pointer -= 1
             self.set_n_to_reg(reg, val)
             if len(self.stack) == 0:
                 print("Stack is now empty")
-            else:
-                self.stack_pointer -= 1
+                self.stack_pointer = -1
         print(self)
 
     def set_0_to_reg(self, reg):
