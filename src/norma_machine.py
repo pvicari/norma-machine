@@ -9,18 +9,51 @@ class NormaMachine:
             E={"signal": 0, "magnitude": 0},
             F={"signal": 0, "magnitude": 0},
         )
+        self.stack = []
+        self.stack_pointer = -1  # pilha vazia
 
     def __str__(self):
         msg = ""
-        msg += "A: ({},{}) | ".format(self.registers["A"]["signal"], self.registers["A"]["magnitude"])
-        msg += "B: ({},{}) | ".format(self.registers["B"]["signal"], self.registers["B"]["magnitude"])
-        msg += "C: ({},{}) | ".format(self.registers["C"]["signal"], self.registers["C"]["magnitude"])
-        msg += "D: ({},{})".format(self.registers["D"]["signal"], self.registers["D"]["magnitude"])
+        for reg in self.registers:
+            msg += "{}: ({},{}) | ".format(reg, self.registers[reg]["signal"], self.registers[reg]["magnitude"])
+        # msg += "A: ({},{}) | ".format(self.registers["A"]["signal"], self.registers["A"]["magnitude"])
+        # msg += "B: ({},{}) | ".format(self.registers["B"]["signal"], self.registers["B"]["magnitude"])
+        # msg += "C: ({},{}) | ".format(self.registers["C"]["signal"], self.registers["C"]["magnitude"])
+        # msg += "D: ({},{}) | ".format(self.registers["D"]["signal"], self.registers["D"]["magnitude"])
+        msg += "Stack: {} | Stack Pointer: {}".format(self.stack, self.stack_pointer)
         return msg
 
-    # TODO inplement change of signal as a function
+    # TODO implement change of signal as a function
     def change_signal(self, reg):
         pass
+
+    def push_to_stack(self, value):
+        print("Pushing {} to the stack".format(value))
+        # Jeito certo
+        self.stack.append(value)
+        self.stack_pointer += 1
+        print(self)
+
+    def pop_from_stack(self, reg="A"):
+        """
+        Pops the stack.
+        A chosen register ca be passed as the target for the popped value
+        :param reg: (optional, default "A") the register where the popped
+                    value will be stored
+        :return: None
+        """
+        print("Popping the stack".format(reg))
+        if len(self.stack) == 0:
+            print("Stack is empty")
+            self.stack_pointer = -1
+        else:
+            val = self.stack.pop()
+            self.stack_pointer -= 1
+            self.set_n_to_reg(reg, val)
+            if len(self.stack) == 0:
+                print("Stack is now empty")
+                self.stack_pointer = -1
+        print(self)
 
     def set_0_to_reg(self, reg):
         print("{}:= 0".format(reg))
