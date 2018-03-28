@@ -10,6 +10,11 @@ def main():
     # nm.test_a_lower_than_b_auxc_auxd()
     nm.mult_a_with_b_with_c_and_d()
     print(nm)
+    nm.push_to_stack(-3)
+    nm.push_to_stack(3)
+    nm.pop_from_stack()
+    nm.pop_from_stack()
+    nm.pop_from_stack()
 
     # verificar o pq da falso
 
