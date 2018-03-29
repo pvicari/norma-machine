@@ -297,7 +297,7 @@ class NormaMachine:
             return
         print("Calculando o fatorial de {}".format(n))
 
-        self.set_n_to_reg("B", n) # B := n, the value we want factorial from
+        self.set_n_to_reg("B", n)  # B := n, the value we want factorial from
         self.set_n_to_reg("A", 1)
         while True:
             if self.registers["B"]["magnitude"] == 0:
@@ -306,3 +306,17 @@ class NormaMachine:
                 self.mult_a_with_b_with_c_and_d()
                 self.registers["B"]["magnitude"] -= 1
             print(self)
+
+    def power(self, a, b):
+        if b == 0:
+            self.set_n_to_reg("A", 1)
+        elif a == 0:
+            self.set_0_to_reg("A")
+        else:
+            self.set_n_to_reg("A", a)
+            self.set_n_to_reg("E", b)
+            while True:
+                if self.registers["E"]["magnitude"] == 0:
+                    break
+                else:
+                    self.set_n_to_reg("B", self.registers["A"]["magnitude"])
