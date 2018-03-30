@@ -1,9 +1,6 @@
 # from norma_machine import NormaMachine
 # import os
-
-# TODO separated test functions
-
-
+from app import app
 # Central point for all the program startup
 '''
 if __name__ == '__main__':
