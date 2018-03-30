@@ -314,7 +314,7 @@ class NormaMachine:
             print(self)
 
     def power(self, a, b):
-        print("Power of {} to".format(a, b))
+        print("Power of {} to {}".format(a, b))
         if b == 0:  # if exponent is 0, result is 1
             self.set_n_to_reg("A", 1)
         elif a == 0:  # if base is zero, result is 0
@@ -323,7 +323,12 @@ class NormaMachine:
             self.set_n_to_reg("A", a)
             self.set_n_to_reg("E", b)
             while True:
-                if self.registers["E"]["magnitude"] == 0:
+                if self.get_reg_magnitude("E") == 0:
                     break
                 else:
-                    self.set_n_to_reg("B", self.registers["A"]["magnitude"])
+                    self.registers["E"]["magnitude"] -= 1
+                    if self.get_reg_magnitude("E") == 0:
+                        break
+                    self.set_n_to_reg("B", self.get_reg_magnitude("A"))
+                    self.mult_a_with_b_with_c_and_d()
+                print(self)
