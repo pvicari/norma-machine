@@ -60,11 +60,11 @@ class NormaMachine:
     def set_0_to_reg(self, reg):
         print("{}:= 0".format(reg))
         while True:
-            if self.registers[reg]["magnitude"] == 0:
+            if self.get_reg_magnitude(reg) == 0:
                 break
             else:
                 self.registers[reg]["magnitude"] = self.registers[reg]["magnitude"] - 1
-                if self.registers[reg]["magnitude"] == 0:
+                if self.get_reg_magnitude(reg) == 0:
                     self.registers[reg]["signal"] = 0
                 print(self)
 
@@ -72,7 +72,8 @@ class NormaMachine:
         print("{}:= {}".format(reg, n))
         self.set_0_to_reg(reg)
         cont = abs(n)
-        if n < 0: self.registers[reg]["signal"] = 1
+        if n < 0:
+            self.registers[reg]["signal"] = 1
         while True:
             if cont == 0:
                 break
@@ -84,14 +85,14 @@ class NormaMachine:
     def add_b_to_a(self, reg_b="B", reg_a="A"):
         print("{0}:={0} + {1}".format(reg_a, reg_b))
         while True:
-            if self.registers[reg_b]["magnitude"] == 0:
+            if self.get_reg_magnitude(reg_b) == 0:
                 break
 
             else:  # se b diferente de 0
                 self.registers[reg_b]["magnitude"] = self.registers[reg_b]["magnitude"] - 1  # decrementa b
-                if self.registers[reg_b]["signal"] == 0:  # b positivo
+                if self.get_reg_signal(reg_b) == 0:  # b positivo
 
-                    if self.registers[reg_a]["signal"] == 0:  # a positivo
+                    if self.get_reg_signal(reg_a) == 0:  # a positivo
                         self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
 
 
@@ -104,9 +105,9 @@ class NormaMachine:
 
                 else:  # b negativo
 
-                    if self.registers[reg_a]["signal"] == 0:  # a positivo
-                        if self.registers[reg_a][
-                            "magnitude"] == 0:  # o a vai passar de positivo para negativo e vai passar a somar
+                    if self.get_reg_signal(reg_a) == 0:  # a positivo
+                        if self.get_reg_magnitude(
+                                reg_a) == 0:  # o a vai passar de positivo para negativo e vai passar a somar
                             self.registers[reg_a]["signal"] = 1
                             self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
                         else:
@@ -115,7 +116,7 @@ class NormaMachine:
                     else:  # a negativo
                         self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
 
-                if self.registers[reg_b]["magnitude"] == 0:  # muda sinal de b se ele chegar a 0
+                if self.get_reg_magnitude(reg_b) == 0:  # muda sinal de b se ele chegar a 0
                     self.registers[reg_b]["signal"] = 0
                 print(self)
 
@@ -124,31 +125,31 @@ class NormaMachine:
         self.set_0_to_reg(reg_c)
 
         while True:
-            if self.registers[reg_b]["magnitude"] == 0:
+            if self.get_reg_magnitude(reg_b) == 0:
                 break
 
             else:  # se b diferente de 0
 
                 self.registers[reg_b]["magnitude"] = self.registers[reg_b]["magnitude"] - 1  # decrementa b
                 self.registers[reg_c]["magnitude"] = self.registers[reg_c]["magnitude"] + 1  # incrementa c
-                if self.registers[reg_b]["signal"] == 0:  # b positivo
+                if self.get_reg_signal(reg_b) == 0:  # b positivo
 
-                    if self.registers[reg_a]["signal"] == 0:  # a positivo
+                    if self.get_reg_signal(reg_a) == 0:  # a positivo
                         self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
 
 
                     else:  # a negativo
                         self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] - 1
-                        if self.registers[reg_a]["magnitude"] == 0:  # o a passa de negativo para positivo
+                        if self.get_reg_magnitude(reg_a) == 0:  # o a passa de negativo para positivo
                             self.registers[reg_a]["signal"] = 0
 
 
 
                 else:  # b negativo
 
-                    if self.registers[reg_a]["signal"] == 0:  # a positivo
-                        if self.registers[reg_a][
-                            "magnitude"] == 0:  # o a vai passar de positivo para negativo e vai passar a somar
+                    if self.get_reg_signal(reg_a) == 0:  # a positivo
+                        if self.get_reg_magnitude(
+                                reg_a) == 0:  # o a vai passar de positivo para negativo e vai passar a somar
                             self.registers[reg_a]["signal"] = 1
                             self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
                         else:
@@ -157,7 +158,7 @@ class NormaMachine:
                     else:  # a negativo
                         self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
 
-                if self.registers[reg_b]["magnitude"] == 0:  # muda sinal de b se ele chegar a 0
+                if self.get_reg_magnitude(reg_b) == 0:  # muda sinal de b se ele chegar a 0
                     self.registers[reg_c]["signal"] = self.registers[reg_b]["signal"]
                     self.registers[reg_b]["signal"] = 0
                 print(self)
@@ -171,8 +172,8 @@ class NormaMachine:
     def mult_a_with_b_with_c_and_d(self, reg_a="A", reg_b="B", reg_c="C", reg_d="D"):
         print("{0}:={0} x {1} usando {2}, {3}".format(reg_a, reg_b, reg_c, reg_d))
         signal = 0
-        if (self.registers[reg_a]["signal"] == 0 and self.registers[reg_b]["signal"] == 0) or \
-                (self.registers[reg_a]["signal"] == 1 and self.registers[reg_b]["signal"] == 1):
+        if (self.get_reg_signal(reg_a) == 0 and self.get_reg_signal(reg_b) == 0) or \
+                (self.get_reg_signal(reg_a) == 1 and self.get_reg_signal(reg_b) == 1):
             pass
         else:
             signal = 1
@@ -180,27 +181,27 @@ class NormaMachine:
         self.add_b_to_a(reg_a, reg_c)
 
         while True:
-            if self.registers[reg_c]["magnitude"] == 0:
+            if self.get_reg_magnitude(reg_c) == 0:
                 break
             else:
                 self.add_b_to_a_with_c(reg_b, reg_a, reg_d)
                 self.registers[reg_c]["magnitude"] = self.registers[reg_c]["magnitude"] - 1
-                if self.registers[reg_c]["magnitude"] == 0:
+                if self.get_reg_magnitude(reg_c) == 0:
                     self.registers[reg_c]["signal"] = 0
                 print(self)
         self.registers[reg_a]["signal"] = signal
 
     def test_a_lower_eq_than_b_auxc_auxd(self, reg_a="A", reg_b="B", reg_c="C", reg_d="D"):
-        if self.registers[reg_a]["signal"] == 0:
-            if self.registers[reg_b]["signal"] == 0:  # se os dois sao positivos subtrai e ve quem chega primeiro em 0
+        if self.get_reg_signal(reg_a) == 0:
+            if self.get_reg_signal(reg_b) == 0:  # se os dois sao positivos subtrai e ve quem chega primeiro em 0
                 while True:
-                    if self.registers[reg_a]["magnitude"] == 0:
-                        if self.registers[reg_b]["magnitude"] == 0:  # se os dois sao 0, retorna true
+                    if self.get_reg_magnitude(reg_a) == 0:
+                        if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna true
                             print(True)
                         else:
                             print(True)
                         break
-                    if self.registers[reg_b]["magnitude"] == 0:
+                    if self.get_reg_magnitude(reg_b) == 0:
                         print(False)
                         break
                     self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] - 1
@@ -212,18 +213,18 @@ class NormaMachine:
                 print(False)
                 return
         else:  # se a é negativo
-            if self.registers[reg_b]["signal"] == 0:  # e b é positivo retorna true
+            if self.get_reg_signal(reg_b) == 0:  # e b é positivo retorna true
                 print(True)
                 return
             else:  # se os dois sao negativos
                 while True:
-                    if self.registers[reg_a]["magnitude"] == 0:
-                        if self.registers[reg_b]["magnitude"] == 0:  # se os dois sao 0, retorna falso
+                    if self.get_reg_magnitude(reg_a) == 0:
+                        if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna falso
                             print(True)
                         else:
                             print(False)
                         break
-                    if self.registers[reg_b]["magnitude"] == 0:
+                    if self.get_reg_magnitude(reg_b) == 0:
                         print(True)
                         break
 
@@ -233,9 +234,9 @@ class NormaMachine:
                     self.registers[reg_d]["magnitude"] = self.registers[reg_d]["magnitude"] + 1
 
         while True:
-            if self.registers[reg_c]["magnitude"] == 0:
+            if self.get_reg_magnitude(reg_c) == 0:
                 break
-            if self.registers[reg_d]["magnitude"] == 0:
+            if self.get_reg_magnitude(reg_d) == 0:
                 break
             self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] + 1
             self.registers[reg_c]["magnitude"] = self.registers[reg_c]["magnitude"] - 1
@@ -299,9 +300,13 @@ class NormaMachine:
 
     def factorial(self, n):
         # Para evitar problemas na máquina, essa condição foi acrescentada
-        if n <= 0:
+        if n < 0:  # não existe fatorial negativo
+            print("ERROR: Illegal Instruction")
             return
         print("Calculando o fatorial de {}".format(n))
+        if n == 0:  # 0! = 1
+            self.set_n_to_reg("A", 1)
+            return
 
         self.set_n_to_reg("B", n)  # B := n, the value we want factorial from
         self.set_n_to_reg("A", 1)
@@ -314,6 +319,9 @@ class NormaMachine:
             print(self)
 
     def power(self, a, b):
+        if b < 0:
+            print("ERROR: Not yet supported")
+            return
         print("Power of {} to {}".format(a, b))
         if b == 0:  # if exponent is 0, result is 1
             self.set_n_to_reg("A", 1)
