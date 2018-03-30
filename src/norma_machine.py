@@ -23,6 +23,12 @@ class NormaMachine:
     def change_signal(self, reg):
         pass
 
+    def get_reg_magnitude(self, reg):
+        return self.registers[reg]["magnitude"]
+
+    def get_reg_signal(self, reg):
+        return self.registers[reg]["signal"]
+
     def push_to_stack(self, value):
         print("Pushing {} to the stack".format(value))
         # Jeito certo
@@ -308,11 +314,12 @@ class NormaMachine:
             print(self)
 
     def power(self, a, b):
-        if b == 0:
+        print("Power of {} to".format(a, b))
+        if b == 0:  # if exponent is 0, result is 1
             self.set_n_to_reg("A", 1)
-        elif a == 0:
+        elif a == 0:  # if base is zero, result is 0
             self.set_0_to_reg("A")
-        else:
+        else:  # a != 0 and b > 0
             self.set_n_to_reg("A", a)
             self.set_n_to_reg("E", b)
             while True:
