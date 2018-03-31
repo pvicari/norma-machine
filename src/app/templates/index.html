@@ -167,14 +167,21 @@
       *** Test
       **/
       $('#result').html('');
-      var html = data.val;
+      var html = '<tr>';
+      for (let key in data.registers) {
+        if (data.registers.hasOwnProperty(key)) {
+          //console.log(key + " -> (" + data.registers[key].signal + ", " + data.registers[key].magnitude + ")");
+          html += '<td> (' + data.registers[key].signal + ', ' + data.registers[key].magnitude + ') </td>';
+        }
+      }
+      html += '<td>' + data.stack + '</td>';
+      console.log(data.stack);
+      html += '<td>' + data.stack_pointer + '</td>';
+      html += '</tr>';
+      //console.log(data.registers); //this works
       $('#result').html(html);
     });
   });
-
-
-
-
 </script>
 
 </body>
