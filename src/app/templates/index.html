@@ -8,119 +8,100 @@
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-            crossorigin="anonymous"></script>
+    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+    crossorigin="anonymous"></script>
     <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet"
-          media="screen,projection"/>
+    media="screen,projection"/>
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet"
-          media="screen,projection"/>
+    media="screen,projection"/>
 </head>
 <body>
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#">Máquina Norma</a></li>
-        </ul>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Máquina Norma</a></li>
+            </ul>
 
-        <ul id="nav-mobile" class="sidenav">
-            <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center blue-grey-text">Máquina Norma</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Um simulador da máquina norma baseado em Python</h5>
+            </div>
+            <br><br>
+        </div>
     </div>
-</nav>
-<div class="section no-pad-bot" id="index-banner">
+
+
     <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Máquina Norma</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-        <div class="row center">
-            <a href="http://materializecss.com/getting-started.html" id="download-button"
-               class="btn-large waves-effect waves-light orange">Get Started</a>
-        </div>
-        <br><br>
-
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="section">
-
-        <!--   Icon Section   -->
+        <!-- Page Layout here -->
         <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                    <h5 class="center">Speeds up development</h5>
+            <div class="col s12 m4 l3 blue-grey"> <!-- Note that "m4 l3" was added -->
+        <!-- Grey navigation panel
 
-                    <p class="light">We did most of the heavy lifting for you to provide a default stylings that
-                        incorporate our custom components. Additionally, we refined animations and transitions to
-                        provide a smoother experience for developers.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                    <h5 class="center">User Experience Focused</h5>
-
-                    <p class="light">By utilizing elements and principles of Material Design, we were able to create a
-                        framework that incorporates components and animations that provide more feedback to users.
-                        Additionally, a single underlying responsive system across all platforms allow for a more
-                        unified user experience.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                    <h5 class="center">Easy to work with</h5>
-
-                    <p class="light">We have provided detailed documentation as well as specific code examples to help
-                        new users get started. We are also always open to feedback and can answer any questions a user
-                        may have about Materialize.</p>
-                </div>
-            </div>
-        </div>
-
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+            <a class="indigo-effect indigo-light btn" id="btn-set0">
+            	Set 0 to A
+            </a>
+            <div class="input-field inline">
+            <input value="A" id="reg" type="text" class="validate">
+            <label for="reg">Registrador</label>
+            <span class="helper-text" data-error="wrong" data-success="right">Erro</span>
+          </div>
     </div>
-    <br><br>
-    <div>
-        <button class="btn waves-effect waves-light" name="action" id="btn-set0">Set 0 to A
-            <i class="material-icons right">send</i>
-        </button>
-        <table class="striped centered responsive-table">
+
+    <div class="col s12 m8 l9 teal"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+          <table class="striped centered responsive-table">
             <thead>
-            <tr>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-                <th>F</th>
-                <th>Pilha</th>
-                <th>Ponteiro Pilha</th>
-            </tr>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>Pilha</th>
+                    <th>Ponteiro Pilha</th>
+                </tr>
             </thead>
 
             <tbody id="result">
             </tbody>
         </table>
+        <br><br>
     </div>
+
+</div>
+<br><br>
 </div>
 
 <footer class="page-footer orange">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Company Bio</h5>
-                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's
-                    our full time job. Any amount would help support and continue development on this project and is
-                    greatly appreciated.</p>
-
-
+                <h5 class="white-text">Sobre</h5>
+                <p class="grey-text text-lighten-4">
+                    Este projeto foi desenvolvido como trabalho prático para a 
+                    disciplina de Teoria da Computação. O código do projeto está disponível no
+                    <a href="https://github.com/pvicari/norma-machine">Github.</a>
+                    Contribuições são bem-vindas.  
+                </p>
             </div>
             <div class="col l3 s12">
                 <h5 class="white-text">Settings</h5>
@@ -161,27 +142,31 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/init.js') }}"></script>
 <script type="text/javascript">
-  $('#btn-set0').click(function(){
-    $.post( "/set-0-to-reg", { reg: 'A' }, function(data){
-      /**
-      *** Test
-      **/
-      $('#result').html('');
-      var html = '<tr>';
-      for (let key in data.registers) {
-        if (data.registers.hasOwnProperty(key)) {
-          //console.log(key + " -> (" + data.registers[key].signal + ", " + data.registers[key].magnitude + ")");
-          html += '<td> (' + data.registers[key].signal + ', ' + data.registers[key].magnitude + ') </td>';
-        }
-      }
-      html += '<td>' + data.stack + '</td>';
-      console.log(data.stack);
-      html += '<td>' + data.stack_pointer + '</td>';
-      html += '</tr>';
-      //console.log(data.registers); //this works
-      $('#result').html(html);
+    // reg := 0
+    $('#btn-set0').click(function(){
+        $.post( "/set-0-to-reg", { reg: 'A' }, function(data){
+            $('#result').html('');
+            var html = '<tr>';
+            for (let key in data.registers) {
+                if (data.registers.hasOwnProperty(key)) {
+                    //console.log(key + " -> (" + data.registers[key].signal + ", " + data.registers[key].magnitude + ")");
+                    html += '<td> (' + data.registers[key].signal + ', ' + data.registers[key].magnitude + ') </td>';
+                }
+            }
+            html += '<td>' + data.stack + '</td>';
+            console.log(data.stack);
+            html += '<td>' + data.stack_pointer + '</td>';
+            html += '</tr>';
+            //console.log(data.registers); //this works
+            /* Toast stuff
+            var toastHTML = '<span>Message</span>\
+                <button class="btn-flat toast-action">\
+                    <i class="material-icons">close</i>\
+                </button>';
+            M.toast({html: toastHTML});*/
+            $('#result').html(html);
+        });
     });
-  });
 </script>
 
 </body>
