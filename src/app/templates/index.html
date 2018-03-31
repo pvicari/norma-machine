@@ -87,6 +87,28 @@
 
     </div>
     <br><br>
+    <div>
+        <button class="btn waves-effect waves-light" name="action" id="btn-set0">Set 0 to A
+            <i class="material-icons right">send</i>
+        </button>
+        <table class="striped centered responsive-table">
+            <thead>
+            <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+                <th>F</th>
+                <th>Pilha</th>
+                <th>Ponteiro Pilha</th>
+            </tr>
+            </thead>
+
+            <tbody id="result">
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <footer class="page-footer orange">
@@ -138,6 +160,22 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/init.js') }}"></script>
+<script type="text/javascript">
+  $('#btn-set0').click(function(){
+    $.post( "/set-0-to-reg", { reg: 'A' }, function(data){
+      /**
+      *** Test
+      **/
+      $('#result').html('');
+      var html = data.val;
+      $('#result').html(html);
+    });
+  });
+
+
+
+
+</script>
 
 </body>
 </html>
