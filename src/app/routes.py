@@ -79,7 +79,27 @@ def mult_a_with_b():
 
 
 @app.route('/test-a-lower-eq-than-b', methods=['POST'])
+def test_a_leq_than_b():
+    assert request.path == '/test-a-lower-eq-than-b'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response, result = nm.test_a_lower_eq_than_b_auxc_auxd()
+
+    return jsonify({'response': response, 'result': result})
+
+
 @app.route('/test-a-lower-than-b', methods=['POST'])
+def test_a_lwr_than_b():
+    assert request.path == '/test-a-lower-than-b'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response, result = nm.test_a_lower_than_b_auxc_auxd()
+
+    return jsonify({'response': response, 'result': result})
+
+
 @app.route('/push', methods=['POST'])
 def push_to_stack():
     assert request.path == '/push'
@@ -108,9 +128,9 @@ def factorial():
     assert request.method == 'POST'
 
     nm.clear_response()
-    response = nm.factorial(request.form['n'])
+    response, error_message = nm.factorial(int(request.form['n']))
 
-    return jsonify({'response': response})
+    return jsonify({'response': response, 'error': error_message})
 
 
 @app.route('/power', methods=['POST'])
@@ -119,6 +139,17 @@ def power():
     assert request.method == 'POST'
 
     nm.clear_response()
-    response = nm.power(request.form['base'], request.form['exp'])
+    response, error_message = nm.power(int(request.form['base']), int(request.form['exp']))
+
+    return jsonify({'response': response, 'error': error_message})
+
+
+@app.route('/reset', methods=['POST'])
+def reset_machine():
+    assert request.path == '/reset'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.reset_machine()
 
     return jsonify({'response': response})

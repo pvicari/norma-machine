@@ -69,7 +69,7 @@
                 A := A x B com C, D
             </a>
             <a class="indigo-effect indigo-light btn" id="btn-testBgreaterA">
-                A &les;; B
+                A < B
             </a>
             <a class="indigo-effect indigo-light btn" id="btn-testBgreatereqA">
                 A &le; B
@@ -116,6 +116,13 @@
                 <tbody id="result">
                 </tbody>
             </table>
+            <div class="row orange-dark">
+                <div class="container">
+                    <h5>Mensagens</h5>
+                    <p class="white-text text-lighten-4 dark-orange" id="msg_box">
+                    </p>
+                </div>
+            </div>
             <br><br>
         </div>
 
@@ -131,7 +138,7 @@
                 <p class="grey-text text-lighten-4">
                     Este projeto foi desenvolvido como trabalho prático para a
                     disciplina de Teoria da Computação. O código do projeto está disponível no
-                    <a href="https://github.com/pvicari/norma-machine">Github.</a>
+                    <a class="teal-text text-lighten-4" href="https://github.com/pvicari/norma-machine">Github.</a>
                     Contribuições são bem-vindas.
                 </p>
             </div>
@@ -146,10 +153,10 @@
     <div class="footer-copyright">
         <div class="container">
             Feito por
-            <a class="orange-text text-lighten-3" href="http://github.com/pvicari">
+            <a class="teal-text text-lighten-3" href="http://github.com/pvicari">
                 <i class="fab fa-github"></i>&nbsp;Pedro Vicari
             </a> e
-            <a class="orange-text text-lighten-3" href="http://github.com/deadpyxel">
+            <a class="teal-text text-lighten-3" href="http://github.com/deadpyxel">
                 <i class="fab fa-github"></i>&nbsp;Robson Cruz
             </a>
         </div>
@@ -214,6 +221,133 @@
             $('#result').html(html);
         });
     });
+
+    $('#btn-testBgreaterA').click(function(){
+        $.post( "/test-a-lower-than-b", {}, function(data){
+        	var html = '';
+        	    $('#msg_box').html(data.result);
+        	    var toastHTML = '<span>'+ data.result + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-testBgreatereqA').click(function(){
+        $.post( "/test-a-lower-eq-than-b", {}, function(data){
+        	var html = '';
+        	    $('#msg_box').html(data.result);
+        	    var toastHTML = '<span>'+ data.result + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-fat').click(function(){
+        $.post( "/factorial", { n: -2 }, function(data){
+        	var html = '';
+        	if(data.error){
+        	    $('#msg_box').html(data.error);
+        	    var toastHTML = '<span>'+ data.error + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	}
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-power').click(function(){
+        $.post( "/power", { base: 5, exp: 2 }, function(data){
+        	var html = '';
+        	if(data.error){
+        	    console.log('Error');
+        	    $('#msg_box').html(data.error);
+                var toastHTML = '<span>'+ data.error + '</span>';
+                M.toast({html: toastHTML});
+        	}
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-reset').click(function(){
+        $.post( "/reset", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
 
 </script>
 
