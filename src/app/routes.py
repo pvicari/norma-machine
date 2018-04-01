@@ -17,11 +17,10 @@ def set_0_to_reg():
     assert request.path == '/set-0-to-reg'
     assert request.method == 'POST'
 
-    nm.set_0_to_reg(request.form['reg'])
+    nm.clear_response()
+    response = nm.set_0_to_reg(request.form['reg'])
 
-    return jsonify({'registers': nm.registers,
-                    'stack': nm.stack,
-                    'stack_pointer': nm.stack_pointer})
+    return jsonify({'response': response})
 
 
 @app.route('/set-n-to-reg', methods=['POST'])
@@ -29,9 +28,10 @@ def set_n_to_reg():
     assert request.path == '/set-n-to-reg'
     assert request.method == 'POST'
 
-    nm.set_n_to_reg(request.form['reg'], request.form['val'])
+    nm.clear_response()
+    response = nm.set_n_to_reg(request.form['reg'], int(request.form['val']))
 
-    return jsonify({'val': nm.get_reg_magnitude("A")})
+    return jsonify({'response': response})
 
 
 @app.route('/add-b-to-a', methods=['POST'])

@@ -8,67 +8,70 @@
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-    crossorigin="anonymous"></script>
+            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+            crossorigin="anonymous"></script>
     <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet"
-    media="screen,projection"/>
+          media="screen,projection"/>
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet"
-    media="screen,projection"/>
+          media="screen,projection"/>
 </head>
 <body>
-    <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Máquina Norma</a></li>
-            </ul>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">Máquina Norma</a></li>
+        </ul>
 
-            <ul id="nav-mobile" class="sidenav">
-                <li><a href="#">Navbar Link</a></li>
-            </ul>
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        </div>
-    </nav>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
-            <h1 class="header center blue-grey-text">Máquina Norma</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Um simulador da máquina norma baseado em Python</h5>
-            </div>
-            <br><br>
-        </div>
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-
-
+</nav>
+<div class="section no-pad-bot" id="index-banner">
     <div class="container">
-        <!-- Page Layout here -->
-        <div class="row">
-            <div class="col s12 m4 l3 blue-grey"> <!-- Note that "m4 l3" was added -->
-        <!-- Grey navigation panel
+        <br><br>
+        <h1 class="header center blue-grey-text">Máquina Norma</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">Um simulador da máquina norma baseado em Python</h5>
+        </div>
+        <br><br>
+    </div>
+</div>
 
-              This content will be:
-          3-columns-wide on large screens,
-          4-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
+
+<div class="container">
+    <!-- Page Layout here -->
+    <div class="row">
+        <div class="col s12 m4 l3 blue-grey"> <!-- Note that "m4 l3" was added -->
+            <!-- Grey navigation panel
+
+                  This content will be:
+              3-columns-wide on large screens,
+              4-columns-wide on medium screens,
+              12-columns-wide on small screens  -->
             <a class="indigo-effect indigo-light btn" id="btn-set0">
-            	Set 0 to A
+                Set 0 to A
             </a>
             <div class="input-field inline">
-            <input value="A" id="reg" type="text" class="validate">
-            <label for="reg">Registrador</label>
-            <span class="helper-text" data-error="wrong" data-success="right">Erro</span>
-          </div>
-    </div>
+                <input value="A" id="reg" type="text" class="validate">
+                <label for="reg">Registrador</label>
+                <span class="helper-text" data-error="wrong" data-success="right">Erro</span>
+            </div>
+            <a class="indigo-effect indigo-light btn" id="btn-setN">
+                Set 0 to A
+            </a>
+        </div>
 
-    <div class="col s12 m8 l9 teal"> <!-- Note that "m8 l9" was added -->
-        <!-- Teal page content
+        <div class="col s12 m8 l9 teal"> <!-- Note that "m8 l9" was added -->
+            <!-- Teal page content
 
-              This content will be:
-          9-columns-wide on large screens,
-          8-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
-          <table class="striped centered responsive-table">
-            <thead>
+                  This content will be:
+              9-columns-wide on large screens,
+              8-columns-wide on medium screens,
+              12-columns-wide on small screens  -->
+            <table class="striped centered responsive-table">
+                <thead>
                 <tr>
                     <th>A</th>
                     <th>B</th>
@@ -79,16 +82,16 @@
                     <th>Pilha</th>
                     <th>Ponteiro Pilha</th>
                 </tr>
-            </thead>
+                </thead>
 
-            <tbody id="result">
-            </tbody>
-        </table>
-        <br><br>
+                <tbody id="result">
+                </tbody>
+            </table>
+            <br><br>
+        </div>
+
     </div>
-
-</div>
-<br><br>
+    <br><br>
 </div>
 
 <footer class="page-footer orange">
@@ -97,10 +100,10 @@
             <div class="col l6 s12">
                 <h5 class="white-text">Sobre</h5>
                 <p class="grey-text text-lighten-4">
-                    Este projeto foi desenvolvido como trabalho prático para a 
+                    Este projeto foi desenvolvido como trabalho prático para a
                     disciplina de Teoria da Computação. O código do projeto está disponível no
                     <a href="https://github.com/pvicari/norma-machine">Github.</a>
-                    Contribuições são bem-vindas.  
+                    Contribuições são bem-vindas.
                 </p>
             </div>
             <div class="col l3 s12">
@@ -145,28 +148,56 @@
     // reg := 0
     $('#btn-set0').click(function(){
         $.post( "/set-0-to-reg", { reg: 'A' }, function(data){
-            $('#result').html('');
-            var html = '<tr>';
-            for (let key in data.registers) {
-                if (data.registers.hasOwnProperty(key)) {
-                    //console.log(key + " -> (" + data.registers[key].signal + ", " + data.registers[key].magnitude + ")");
-                    html += '<td> (' + data.registers[key].signal + ', ' + data.registers[key].magnitude + ') </td>';
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
                 }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+                /* Toast stuff
+                var toastHTML = '<span>Message</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});*/
             }
-            html += '<td>' + data.stack + '</td>';
-            console.log(data.stack);
-            html += '<td>' + data.stack_pointer + '</td>';
-            html += '</tr>';
-            //console.log(data.registers); //this works
-            /* Toast stuff
-            var toastHTML = '<span>Message</span>\
-                <button class="btn-flat toast-action">\
-                    <i class="material-icons">close</i>\
-                </button>';
-            M.toast({html: toastHTML});*/
             $('#result').html(html);
         });
     });
+
+    $('#btn-setN').click(function(){
+        $.post( "/set-n-to-reg", { reg: 'A', val: 5 }, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+                /* Toast stuff
+                var toastHTML = '<span>Message</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});*/
+            }
+            $('#result').html(html);
+        });
+    });
+
 </script>
 
 </body>

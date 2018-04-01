@@ -1,3 +1,6 @@
+import copy
+
+
 class NormaMachine:
 
     def __init__(self):
@@ -12,12 +15,26 @@ class NormaMachine:
         self.stack = []
         self.stack_pointer = -1  # pilha vazia
 
+        self.response = []
+
     def __str__(self):
         msg = ""
         for reg in self.registers:
             msg += "{}: ({},{}) | ".format(reg, self.registers[reg]["signal"], self.registers[reg]["magnitude"])
         msg += "Stack: {} | Stack Pointer: {}".format(self.stack, self.stack_pointer)
         return msg
+
+    def clear_response(self):
+        self.response = []
+
+    def append_to_response(self):
+        log_entry = {
+            'registers': copy.deepcopy(self.registers),
+            'stack': copy.deepcopy(self.stack),
+            'stack_pointer': copy.deepcopy(self.stack_pointer)
+        }
+
+        self.response.append(log_entry)
 
     # TODO implement change of signal as a function
     def change_signal(self, reg):
@@ -59,6 +76,7 @@ class NormaMachine:
 
     def set_0_to_reg(self, reg):
         print("{}:= 0".format(reg))
+        self.append_to_response()
         while True:
             if self.get_reg_magnitude(reg) == 0:
                 break
@@ -66,10 +84,13 @@ class NormaMachine:
                 self.registers[reg]["magnitude"] = self.registers[reg]["magnitude"] - 1
                 if self.get_reg_magnitude(reg) == 0:
                     self.registers[reg]["signal"] = 0
-                print(self)
+                self.append_to_response()
+                # print(self)
+        return self.response
 
     def set_n_to_reg(self, reg, n):
         print("{}:= {}".format(reg, n))
+        self.append_to_response()
         self.set_0_to_reg(reg)
         cont = abs(n)
         if n < 0:
@@ -80,7 +101,9 @@ class NormaMachine:
             else:
                 self.registers[reg]["magnitude"] = self.registers[reg]["magnitude"] + 1
                 cont -= 1
-                print(self)
+                self.append_to_response()
+                # print(self)
+        return self.response
 
     def add_b_to_a(self, reg_b="B", reg_a="A"):
         print("{0}:={0} + {1}".format(reg_a, reg_b))
@@ -165,7 +188,7 @@ class NormaMachine:
         self.add_b_to_a(reg_c, reg_b)
 
     def set_b_to_a_with_c(self, reg_b="B", reg_a="A", reg_c="C"):
-        print("{}:= {} usando {}".format(reg_a, reg_b.reg_c))
+        print("{}:= {} usando {}".format(reg_a, reg_b, reg_c))
         self.set_0_to_reg(reg_a)
         self.add_b_to_a_with_c(reg_b, reg_a, reg_c)
 
