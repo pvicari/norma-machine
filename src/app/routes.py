@@ -35,12 +35,90 @@ def set_n_to_reg():
 
 
 @app.route('/add-b-to-a', methods=['POST'])
+def add_b_to_a():
+    assert request.path == '/add-b-to-a'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.add_b_to_a()
+
+    return jsonify({'response': response})
+
+
 @app.route('/add-b-to-a-with-c', methods=['POST'])
-@app.route('/set-b-to-a-with-c', methods=['POST'])
+def add_b_to_a_with_c():
+    assert request.path == '/add-b-to-a-with-c'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.add_b_to_a_with_c()
+
+    return jsonify({'response': response})
+
+
+@app.route('/set-b-to-a', methods=['POST'])
+def set_b_to_a():
+    assert request.path == '/set-b-to-a'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.set_b_to_a_with_c()
+
+    return jsonify({'response': response})
+
+
 @app.route('/mult-a-with-b', methods=['POST'])
+def mult_a_with_b():
+    assert request.path == '/multi-a-with-b'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.mult_a_with_b_with_c_and_d()
+
+    return jsonify({'response': response})
+
+
 @app.route('/test-a-lower-eq-than-b', methods=['POST'])
 @app.route('/test-a-lower-than-b', methods=['POST'])
+@app.route('/push', methods=['POST'])
+def push_to_stack():
+    assert request.path == '/push'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.push_to_stack(request.form['val'])
+
+    return jsonify({'response': response})
+
+
+@app.route('/pop', methods=['POST'])
+def pop_from_stack():
+    assert request.path == '/pop'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.pop_from_stack()
+
+    return jsonify({'response': response})
+
+
 @app.route('/factorial', methods=['POST'])
+def factorial():
+    assert request.path == '/factorial'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.factorial(request.form['n'])
+
+    return jsonify({'response': response})
+
+
 @app.route('/power', methods=['POST'])
-def todo():
-    pass
+def power():
+    assert request.path == '/power'
+    assert request.method == 'POST'
+
+    nm.clear_response()
+    response = nm.power(request.form['base'], request.form['exp'])
+
+    return jsonify({'response': response})
