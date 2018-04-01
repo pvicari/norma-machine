@@ -51,16 +51,45 @@
               4-columns-wide on medium screens,
               12-columns-wide on small screens  -->
             <a class="indigo-effect indigo-light btn" id="btn-set0">
-                Set 0 to A
+                A := 0
             </a>
-            <div class="input-field inline">
-                <input value="A" id="reg" type="text" class="validate">
-                <label for="reg">Registrador</label>
-                <span class="helper-text" data-error="wrong" data-success="right">Erro</span>
-            </div>
             <a class="indigo-effect indigo-light btn" id="btn-setN">
-                Set 0 to A
+                A := N
             </a>
+            <a class="indigo-effect indigo-light btn" id="btn-addBtoA">
+                A := A + B
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-addBtoAwC">
+                A := A + B usando C
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-setBtoA">
+                A := B usando C
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-multAwB">
+                A := A x B com C, D
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-testBgreaterA">
+                A &les;; B
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-testBgreatereqA">
+                A &le; B
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-push">
+                Push
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-pop">
+                Pop
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-fat">
+                Fatorial
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-power">
+                Potenciação
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-reset">
+                Reset
+            </a>
+            <br><br>
         </div>
 
         <div class="col s12 m8 l9 teal"> <!-- Note that "m8 l9" was added -->
@@ -94,11 +123,11 @@
     <br><br>
 </div>
 
-<footer class="page-footer orange">
+<footer class="page-footer blue-grey">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Sobre</h5>
+                <h5 class="white-text">Sobre o Projeto</h5>
                 <p class="grey-text text-lighten-4">
                     Este projeto foi desenvolvido como trabalho prático para a
                     disciplina de Teoria da Computação. O código do projeto está disponível no
@@ -106,29 +135,17 @@
                     Contribuições são bem-vindas.
                 </p>
             </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Connect</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
+            <div class="col l6 s12">
+                <h5 class="white-text">Máquina Norma</h5>
+                <p class="grey-text text-lighten-4">
+                    lorem ipsum
+                </p>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            Made by
+            Feito por
             <a class="orange-text text-lighten-3" href="http://github.com/pvicari">
                 <i class="fab fa-github"></i>&nbsp;Pedro Vicari
             </a> e
