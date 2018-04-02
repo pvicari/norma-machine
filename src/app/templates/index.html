@@ -171,7 +171,7 @@
 <script type="text/javascript">
     // reg := 0
     $('#btn-set0').click(function(){
-        $.post( "/set-0-to-reg", { reg: 'A' }, function(data){
+        $.post("/set-0-to-reg", { reg: 'A' }, function(data){
         	var html = '';
         	$('#result').html('');
             for(let i = 0; i < data.response.length; i++){
@@ -185,19 +185,14 @@
                 html += '<td>' + entry.stack + '</td>';
                 html += '<td>' + entry.stack_pointer + '</td>';
                 html += '</tr>';
-                /* Toast stuff
-                var toastHTML = '<span>Message</span>\
-                    <button class="btn-flat toast-action">\
-                        <i class="material-icons">close</i>\
-                    </button>';
-                M.toast({html: toastHTML});*/
             }
             $('#result').html(html);
         });
     });
 
+    // reg := N
     $('#btn-setN').click(function(){
-        $.post( "/set-n-to-reg", { reg: 'A', val: 5 }, function(data){
+        $.post("/set-n-to-reg", { reg: 'A', val: 5 }, function(data){
         	var html = '';
         	$('#result').html('');
             for(let i = 0; i < data.response.length; i++){
@@ -211,12 +206,140 @@
                 html += '<td>' + entry.stack + '</td>';
                 html += '<td>' + entry.stack_pointer + '</td>';
                 html += '</tr>';
-                /* Toast stuff
-                var toastHTML = '<span>Message</span>\
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := A + B
+    $('#btn-addBtoA').click(function(){
+        $.post("/add-b-to-a", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := A + B usando C
+    $('#btn-addBtoAwC').click(function(){
+        $.post("/add-b-to-a-with-c", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := B usando C
+    $('#btn-setBtoA').click(function(){
+        $.post("/set-b-to-a", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := A x B usando C, D
+    $('#btn-multAwB').click(function(){
+        $.post("/mult-a-with-b", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // Push to Stack
+    $('#btn-push').click(function(){
+        $.post("/push", {val: 3}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // Pop from Stack
+    $('#btn-pop').click(function(){
+        $.post("/pop", {}, function(data){
+        	var html = '';
+        	if(data.msg){
+        	    $('#msg_box').html(data.msg);
+        	    var toastHTML = '<span>'+ data.msg + '</span>\
                     <button class="btn-flat toast-action">\
                         <i class="material-icons">close</i>\
                     </button>';
-                M.toast({html: toastHTML});*/
+                M.toast({html: toastHTML});
+        	}
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
             }
             $('#result').html(html);
         });
@@ -347,8 +470,6 @@
             $('#result').html(html);
         });
     });
-
-
 </script>
 
 </body>

@@ -69,7 +69,7 @@ def set_b_to_a():
 
 @app.route('/mult-a-with-b', methods=['POST'])
 def mult_a_with_b():
-    assert request.path == '/multi-a-with-b'
+    assert request.path == '/mult-a-with-b'
     assert request.method == 'POST'
 
     nm.clear_response()
@@ -106,7 +106,7 @@ def push_to_stack():
     assert request.method == 'POST'
 
     nm.clear_response()
-    response = nm.push_to_stack(request.form['val'])
+    response = nm.push_to_stack(int(request.form['val']))
 
     return jsonify({'response': response})
 
@@ -117,9 +117,9 @@ def pop_from_stack():
     assert request.method == 'POST'
 
     nm.clear_response()
-    response = nm.pop_from_stack()
+    response, msg = nm.pop_from_stack()
 
-    return jsonify({'response': response})
+    return jsonify({'response': response, 'msg': msg})
 
 
 @app.route('/factorial', methods=['POST'])

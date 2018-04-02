@@ -58,6 +58,7 @@ class NormaMachine:
         self.stack.append(value)
         self.stack_pointer += 1
         self.append_to_response()
+        return self.response
 
     def pop_from_stack(self, reg="A"):
         """
@@ -68,17 +69,19 @@ class NormaMachine:
         :return: None
         """
         print("Popping the stack".format(reg))
+        msg = ''
         if len(self.stack) == 0:
-            print("Stack is empty")
+            msg += "Stack is empty"
             self.stack_pointer = -1
         else:
             val = self.stack.pop()
             self.stack_pointer -= 1
             self.set_n_to_reg(reg, val)
             if len(self.stack) == 0:
-                print("Stack is now empty")
+                msg += "Stack is now empty"
                 self.stack_pointer = -1
         self.append_to_response()
+        return self.response, msg
 
     def set_0_to_reg(self, reg):
         print("{}:= 0".format(reg))
