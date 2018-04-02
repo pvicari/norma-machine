@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Máquina Norma</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+            crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+    <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+</head>
+<body>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">Máquina Norma</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+        <h1 class="header center blue-grey-text">Máquina Norma</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">Um simulador da máquina norma baseado em Python</h5>
+        </div>
+        <br><br>
+    </div>
+</div>
+
+
+<div class="container">
+    <!-- Page Layout here -->
+    <div class="row">
+        <div class="col s12 m4 l3 blue-grey"> <!-- Note that "m4 l3" was added -->
+            <!-- Grey navigation panel
+
+                  This content will be:
+              3-columns-wide on large screens,
+              4-columns-wide on medium screens,
+              12-columns-wide on small screens  -->
+            <a class="indigo-effect indigo-light btn" id="btn-set0">
+                A := 0
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-setN">
+                A := N
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-addBtoA">
+                A := A + B
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-addBtoAwC">
+                A := A + B usando C
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-setBtoA">
+                A := B usando C
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-multAwB">
+                A := A x B com C, D
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-testBgreaterA">
+                A < B
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-testBgreatereqA">
+                A &le; B
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-push">
+                Push
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-pop">
+                Pop
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-fat">
+                Fatorial
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-power">
+                Potenciação
+            </a>
+            <a class="indigo-effect indigo-light btn" id="btn-reset">
+                Reset
+            </a>
+            <br><br>
+        </div>
+
+        <div class="col s12 m8 l9 teal"> <!-- Note that "m8 l9" was added -->
+            <!-- Teal page content
+
+                  This content will be:
+              9-columns-wide on large screens,
+              8-columns-wide on medium screens,
+              12-columns-wide on small screens  -->
+            <table class="striped centered responsive-table">
+                <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>Pilha</th>
+                    <th>Ponteiro Pilha</th>
+                </tr>
+                </thead>
+
+                <tbody id="result">
+                </tbody>
+            </table>
+            <div class="row orange-dark">
+                <div class="container">
+                    <h5>Mensagens</h5>
+                    <p class="white-text text-lighten-4 dark-orange" id="msg_box">
+                    </p>
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+    </div>
+    <br><br>
+</div>
+
+<footer class="page-footer blue-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Sobre o Projeto</h5>
+                <p class="grey-text text-lighten-4">
+                    Este projeto foi desenvolvido como trabalho prático para a
+                    disciplina de Teoria da Computação. O código do projeto está disponível no
+                    <a class="teal-text text-lighten-4" href="https://github.com/pvicari/norma-machine">Github.</a>
+                    Contribuições são bem-vindas.
+                </p>
+            </div>
+            <div class="col l6 s12">
+                <h5 class="white-text">Máquina Norma</h5>
+                <p class="grey-text text-lighten-4">
+                    lorem ipsum
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Feito por
+            <a class="teal-text text-lighten-3" href="http://github.com/pvicari">
+                <i class="fab fa-github"></i>&nbsp;Pedro Vicari
+            </a> e
+            <a class="teal-text text-lighten-3" href="http://github.com/deadpyxel">
+                <i class="fab fa-github"></i>&nbsp;Robson Cruz
+            </a>
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/init.js') }}"></script>
+<script type="text/javascript">
+    // reg := 0
+    $('#btn-set0').click(function(){
+        $.post("/set-0-to-reg", { reg: 'A' }, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // reg := N
+    $('#btn-setN').click(function(){
+        $.post("/set-n-to-reg", { reg: 'A', val: 5 }, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := A + B
+    $('#btn-addBtoA').click(function(){
+        $.post("/add-b-to-a", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := A + B usando C
+    $('#btn-addBtoAwC').click(function(){
+        $.post("/add-b-to-a-with-c", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := B usando C
+    $('#btn-setBtoA').click(function(){
+        $.post("/set-b-to-a", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // A := A x B usando C, D
+    $('#btn-multAwB').click(function(){
+        $.post("/mult-a-with-b", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // Push to Stack
+    $('#btn-push').click(function(){
+        $.post("/push", {val: 3}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    // Pop from Stack
+    $('#btn-pop').click(function(){
+        $.post("/pop", {}, function(data){
+        	var html = '';
+        	if(data.msg){
+        	    $('#msg_box').html(data.msg);
+        	    var toastHTML = '<span>'+ data.msg + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	}
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-testBgreaterA').click(function(){
+        $.post( "/test-a-lower-than-b", {}, function(data){
+        	var html = '';
+        	    $('#msg_box').html(data.result);
+        	    var toastHTML = '<span>'+ data.result + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-testBgreatereqA').click(function(){
+        $.post( "/test-a-lower-eq-than-b", {}, function(data){
+        	var html = '';
+        	    $('#msg_box').html(data.result);
+        	    var toastHTML = '<span>'+ data.result + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-fat').click(function(){
+        $.post( "/factorial", { n: -2 }, function(data){
+        	var html = '';
+        	if(data.error){
+        	    $('#msg_box').html(data.error);
+        	    var toastHTML = '<span>'+ data.error + '</span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        	}
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-power').click(function(){
+        $.post( "/power", { base: 5, exp: 2 }, function(data){
+        	var html = '';
+        	if(data.error){
+        	    console.log('Error');
+        	    $('#msg_box').html(data.error);
+                var toastHTML = '<span>'+ data.error + '</span>';
+                M.toast({html: toastHTML});
+        	}
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+
+    $('#btn-reset').click(function(){
+        $.post( "/reset", {}, function(data){
+        	var html = '';
+        	$('#result').html('');
+            for(let i = 0; i < data.response.length; i++){
+                entry = data.response[i];
+                html += '<tr>';
+                for (let key in entry.registers) {
+                    if (entry.registers.hasOwnProperty(key)) {
+                        html += '<td> (' + entry.registers[key].signal + ', ' + entry.registers[key].magnitude + ') </td>';
+                    }
+                }
+                html += '<td>' + entry.stack + '</td>';
+                html += '<td>' + entry.stack_pointer + '</td>';
+                html += '</tr>';
+            }
+            $('#result').html(html);
+        });
+    });
+</script>
+
+</body>
+</html>
