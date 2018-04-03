@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify
-from .norma_machine import NormaMachine
 
 from app import app
+from .norma_machine import NormaMachine
 
 nm = NormaMachine()
 
@@ -18,7 +18,7 @@ def set_0_to_reg():
     assert request.method == 'POST'
 
     nm.clear_response()
-    response = nm.set_0_to_reg(request.form['reg'])
+    response = nm.set_0_to_reg(request.form['reg'].upper())
 
     return jsonify({'response': response})
 
