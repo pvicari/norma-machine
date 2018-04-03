@@ -50,12 +50,20 @@
               3-columns-wide on large screens,
               4-columns-wide on medium screens,
               12-columns-wide on small screens  -->
+            <div class="input-field inline">
+                <input id="reg" type="text" class="validate">
+                <label for="reg">Registrador</label>
+            </div>
             <a class="indigo-effect indigo-light btn" id="btn-set0">
                 A := 0
             </a>
             <a class="indigo-effect indigo-light btn" id="btn-setN">
                 A := N
             </a>
+            <div class="input-field inline">
+                <input id="n_val" type="text" class="validate">
+                <label for="reg">N</label>
+            </div>
             <a class="indigo-effect indigo-light btn" id="btn-addBtoA">
                 A := A + B
             </a>
@@ -83,6 +91,10 @@
             <a class="indigo-effect indigo-light btn" id="btn-fat">
                 Fatorial
             </a>
+            <div class="input-field inline">
+                <input id="n_fat" type="text" class="validate">
+                <label for="reg">Valor</label>
+            </div>
             <a class="indigo-effect indigo-light btn" id="btn-power">
                 Potenciação
             </a>
@@ -168,10 +180,23 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/init.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/handlers.js') }}"></script>
+<!--
 <script type="text/javascript">
+    var reg_list = ['A', 'B', 'C', 'D', 'E', 'F'];
+
     // reg := 0
     $('#btn-set0').click(function(){
-        $.post("/set-0-to-reg", { reg: 'A' }, function(data){
+        var reg = document.getElementById("reg").value.toUpperCase();
+        if(!reg_list.includes(reg)){
+            $('#msg_box').html("Registrador inexistente");
+        	    var toastHTML = '<span> ERRO: Registrador Inexistente! </span>\
+                    <button class="btn-flat toast-action">\
+                        <i class="material-icons">close</i>\
+                    </button>';
+                M.toast({html: toastHTML});
+        }else{
+        $.post("/set-0-to-reg", { reg: reg }, function(data){
         	var html = '';
         	$('#result').html('');
             for(let i = 0; i < data.response.length; i++){
@@ -188,6 +213,7 @@
             }
             $('#result').html(html);
         });
+        }
     });
 
     // reg := N
@@ -398,7 +424,8 @@
     });
 
     $('#btn-fat').click(function(){
-        $.post( "/factorial", { n: -2 }, function(data){
+        var val = parseInt(document.getElementById("n_fat").value);
+        $.post( "/factorial", { n: val }, function(data){
         	var html = '';
         	if(data.error){
         	    $('#msg_box').html(data.error);
@@ -471,6 +498,6 @@
         });
     });
 </script>
-
+-->
 </body>
 </html>

@@ -248,7 +248,7 @@ class NormaMachine:
                 return self.response, flag
         else:  # se a é negativo
             if self.get_reg_signal(reg_b) == 0:  # e b é positivo retorna true
-                flag = False
+                flag = True
                 return self.response, flag
             else:  # se os dois sao negativos
                 while True:
@@ -256,7 +256,7 @@ class NormaMachine:
                         if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna falso
                             flag = False
                         else:
-                            flag = False
+                            flag = True
                         break
                     if self.get_reg_magnitude(reg_b) == 0:
                         flag = False
@@ -292,7 +292,7 @@ class NormaMachine:
                         if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna falso
                             flag = False
                         else:
-                            flag = False
+                            flag = True
                         break
                     if self.get_reg_magnitude(reg_b) == 0:
                         flag = False
@@ -308,7 +308,7 @@ class NormaMachine:
                 return self.response, flag
         else:  # se a é negativo
             if self.get_reg_signal(reg_b) == 0:  # e b é positivo retorna true
-                flag = False
+                flag = True
                 return self.response, flag
             else:  # se os dois sao negativos
                 while True:
@@ -316,7 +316,7 @@ class NormaMachine:
                         if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna falso
                             flag = False
                         else:
-                            flag = False
+                            flag = True
                         break
                     if self.get_reg_magnitude(reg_b) == 0:
                         flag = False
