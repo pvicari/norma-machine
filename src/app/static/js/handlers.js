@@ -1,13 +1,13 @@
 var reg_list = ['A', 'B', 'C', 'D', 'E', 'F'];
 
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+
+
 // reg := 0
 $('#btn-set0').click(function(){
-    var reg = document.getElementById("reg").value.toUpperCase();
-    if(!reg_list.includes(reg)){
-        $('#msg_box').html("Registrador inexistente");
-            var toastHTML = '<span> ERRO: Registrador Inexistente! </span>';
-            M.toast({html: toastHTML});
-    }else{
+    var reg = $("#reg_list").val().toUpperCase();
     $.post("/set-0-to-reg", { reg: reg }, function(data){
         var html = '';
         $('#result').html('');
@@ -25,13 +25,12 @@ $('#btn-set0').click(function(){
         }
         $('#result').html(html);
     });
-    }
 });
 
 // reg := N
 $('#btn-setN').click(function(){
-    var reg = document.getElementById("reg").value.toUpperCase();
-    var n = parseInt(document.getElementById("n_val").value.toUpperCase());
+    var reg = $("#reg_list").val().toUpperCase();
+    var n = parseInt($("#n_val").val());
     $.post("/set-n-to-reg", { reg: reg, val: n }, function(data){
         var html = '';
         $('#result').html('');
@@ -137,7 +136,8 @@ $('#btn-multAwB').click(function(){
 
 // Push to Stack
 $('#btn-push').click(function(){
-    $.post("/push", {val: 3}, function(data){
+    var v = parseInt($("#n_push").val());
+    $.post("/push", {val: v}, function(data){
         var html = '';
         $('#result').html('');
         for(let i = 0; i < data.response.length; i++){
@@ -162,10 +162,7 @@ $('#btn-pop').click(function(){
         var html = '';
         if(data.msg){
             $('#msg_box').html(data.msg);
-            var toastHTML = '<span>'+ data.msg + '</span>\
-                <button class="btn-flat toast-action">\
-                    <i class="material-icons">close</i>\
-                </button>';
+            var toastHTML = '<span>'+ data.msg + '</span>';
             M.toast({html: toastHTML});
         }
         $('#result').html('');
@@ -188,11 +185,8 @@ $('#btn-pop').click(function(){
 $('#btn-testBgreaterA').click(function(){
     $.post( "/test-a-lower-than-b", {}, function(data){
         var html = '';
-            $('#msg_box').html(data.result);
-            var toastHTML = '<span>'+ data.result + '</span>\
-                <button class="btn-flat toast-action">\
-                    <i class="material-icons">close</i>\
-                </button>';
+            $('#msg_box').html(data.result == false ? "False" : "True");
+            var toastHTML = '<span>'+ data.result + '</span>';
             M.toast({html: toastHTML});
         $('#result').html('');
         for(let i = 0; i < data.response.length; i++){
@@ -214,11 +208,8 @@ $('#btn-testBgreaterA').click(function(){
 $('#btn-testBgreatereqA').click(function(){
     $.post( "/test-a-lower-eq-than-b", {}, function(data){
         var html = '';
-            $('#msg_box').html(data.result);
-            var toastHTML = '<span>'+ data.result + '</span>\
-                <button class="btn-flat toast-action">\
-                    <i class="material-icons">close</i>\
-                </button>';
+            $('#msg_box').html(data.result == false ? "False" : "True");
+            var toastHTML = '<span>'+ data.result + '</span>';
             M.toast({html: toastHTML});
         $('#result').html('');
         for(let i = 0; i < data.response.length; i++){
@@ -238,15 +229,12 @@ $('#btn-testBgreatereqA').click(function(){
 });
 
 $('#btn-fat').click(function(){
-    var val = parseInt(document.getElementById("n_fat").value);
+    var val = $("#n_fat").val();
     $.post( "/factorial", { n: val }, function(data){
         var html = '';
         if(data.error){
             $('#msg_box').html(data.error);
-            var toastHTML = '<span>'+ data.error + '</span>\
-                <button class="btn-flat toast-action">\
-                    <i class="material-icons">close</i>\
-                </button>';
+            var toastHTML = '<span>'+ data.error + '</span>';
             M.toast({html: toastHTML});
         }
         $('#result').html('');
@@ -267,7 +255,9 @@ $('#btn-fat').click(function(){
 });
 
 $('#btn-power').click(function(){
-    $.post( "/power", { base: 5, exp: 2 }, function(data){
+    var base = parseInt($("#base").val());
+    var exp = parseInt($("#exp").val());
+    $.post( "/power", { base: base, exp: exp }, function(data){
         var html = '';
         if(data.error){
             console.log('Error');

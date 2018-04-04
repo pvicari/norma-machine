@@ -13,20 +13,22 @@
 	font-size: inherit;
 }
 
-/*
 tbody {
-display:block;
-height:150px;
-overflow:auto;
+    display:block;
+    height:600px;
+    overflow:auto;
 }
+
 thead, tbody tr {
-display:table;
-width:100%;
-table-layout:fixed;
+    display:table;
+    width:100%;
+    table-layout:fixed;
 }
+
 thead {
-width: calc( 100% - 1em )
+    width: calc( 100% - 1em )
 }
+
 table {
-width:100%;
-}*/
+    width:100%;
+}
