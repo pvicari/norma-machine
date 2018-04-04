@@ -33,7 +33,6 @@ class NormaMachine:
             'stack': copy.deepcopy(self.stack),
             'stack_pointer': copy.deepcopy(self.stack_pointer)
         }
-
         self.response.append(log_entry)
 
     # TODO implement change of signal as a function
@@ -51,6 +50,7 @@ class NormaMachine:
             self.set_0_to_reg(reg)
         self.stack = []
         self.stack_pointer = -1
+        self.response = self.response[-1:]
         return self.response
 
     def push_to_stack(self, value):
@@ -99,7 +99,6 @@ class NormaMachine:
 
     def set_n_to_reg(self, reg, n):
         print("{}:= {}".format(reg, n))
-        self.append_to_response()
         self.set_0_to_reg(reg)
         cont = abs(n)
         if n < 0:
@@ -116,7 +115,6 @@ class NormaMachine:
 
     def add_b_to_a(self, reg_b="B", reg_a="A"):
         print("{0}:={0} + {1}".format(reg_a, reg_b))
-        self.append_to_response()
         while True:
             if self.get_reg_magnitude(reg_b) == 0:
                 break
@@ -157,7 +155,6 @@ class NormaMachine:
 
     def add_b_to_a_with_c(self, reg_b="B", reg_a="A", reg_c="C"):
         print("{0}:={0} + {1} usando {2}".format(reg_a, reg_b, reg_c))
-        self.append_to_response()
         self.set_0_to_reg(reg_c)
 
         while True:
@@ -193,14 +190,12 @@ class NormaMachine:
 
     def set_b_to_a_with_c(self, reg_b="B", reg_a="A", reg_c="C"):
         print("{}:= {} usando {}".format(reg_a, reg_b, reg_c))
-        self.append_to_response()
         self.set_0_to_reg(reg_a)
         self.add_b_to_a_with_c(reg_b, reg_a, reg_c)
         return self.response
 
     def mult_a_with_b_with_c_and_d(self, reg_a="A", reg_b="B", reg_c="C", reg_d="D"):
         print("{0}:={0} x {1} usando {2}, {3}".format(reg_a, reg_b, reg_c, reg_d))
-        self.append_to_response()
         signal = 0
         if (self.get_reg_signal(reg_a) == 0 and self.get_reg_signal(reg_b) == 0) or \
                 (self.get_reg_signal(reg_a) == 1 and self.get_reg_signal(reg_b) == 1):
@@ -226,15 +221,16 @@ class NormaMachine:
 
     def test_a_lower_eq_than_b_auxc_auxd(self, reg_a="A", reg_b="B", reg_c="C", reg_d="D"):
         flag = False
-        self.append_to_response()
         if self.get_reg_signal(reg_a) == 0:
             if self.get_reg_signal(reg_b) == 0:  # se os dois sao positivos subtrai e ve quem chega primeiro em 0
                 while True:
                     if self.get_reg_magnitude(reg_a) == 0:
                         if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna true
                             flag = True
+                        else:
+                            flag = True
                         break
-                    if self.get_reg_magnitude(reg_b) == 0:
+                    elif self.get_reg_magnitude(reg_b) == 0:
                         flag = False
                         break
                     self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] - 1
@@ -253,13 +249,13 @@ class NormaMachine:
             else:  # se os dois sao negativos
                 while True:
                     if self.get_reg_magnitude(reg_a) == 0:
-                        if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna falso
-                            flag = False
-                        else:
+                        if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna True
                             flag = True
+                        else:
+                            flag = False
                         break
-                    if self.get_reg_magnitude(reg_b) == 0:
-                        flag = False
+                    elif self.get_reg_magnitude(reg_b) == 0:
+                        flag = True
                         break
 
                     self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] - 1
@@ -283,7 +279,6 @@ class NormaMachine:
         self.set_0_to_reg(reg_c)
         self.set_0_to_reg(reg_d)
         flag = False
-        self.append_to_response()
 
         if self.get_reg_signal(reg_a) == 0:
             if self.get_reg_signal(reg_b) == 0:  # se os dois sao positivos subtrai e ve quem chega primeiro em 0
@@ -294,7 +289,7 @@ class NormaMachine:
                         else:
                             flag = True
                         break
-                    if self.get_reg_magnitude(reg_b) == 0:
+                    elif self.get_reg_magnitude(reg_b) == 0:
                         flag = False
                         break
                     self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] - 1
@@ -316,10 +311,10 @@ class NormaMachine:
                         if self.get_reg_magnitude(reg_b) == 0:  # se os dois sao 0, retorna falso
                             flag = False
                         else:
-                            flag = True
+                            flag = False
                         break
-                    if self.get_reg_magnitude(reg_b) == 0:
-                        flag = False
+                    if self.get_reg_magnitude(reg_b) == 0:  # se não A não é 0 e o B ja chegou a 0
+                        flag = True
                         break
 
                     self.registers[reg_a]["magnitude"] = self.registers[reg_a]["magnitude"] - 1
@@ -344,10 +339,8 @@ class NormaMachine:
         # Para evitar problemas na máquina, essa condição foi acrescentada
         if n < 0:  # não existe fatorial negativo
             error_msg += "ERROR: Illegal Instruction."
-            self.append_to_response()
             return self.response, error_msg
         print("Calculando o fatorial de {}".format(n))
-        self.append_to_response()
         if n == 0:  # 0! = 1
             self.set_n_to_reg("A", 1)
             return self.response, error_msg
@@ -369,7 +362,6 @@ class NormaMachine:
             error_msg += "ERROR: Not yet supported"
             return self.response, error_msg
         print("Power of {} to {}".format(a, b))
-        self.append_to_response()
         if b == 0:  # if exponent is 0, result is 1
             self.set_n_to_reg("A", 1)
         elif a == 0:  # if base is zero, result is 0
