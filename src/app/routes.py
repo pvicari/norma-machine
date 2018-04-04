@@ -18,6 +18,7 @@ def set_0_to_reg():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.set_0_to_reg(request.form['reg'].upper())
 
     return jsonify({'response': response})
@@ -29,6 +30,7 @@ def set_n_to_reg():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.set_n_to_reg(request.form['reg'], int(request.form['val']))
 
     return jsonify({'response': response})
@@ -40,6 +42,7 @@ def add_b_to_a():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.add_b_to_a()
 
     return jsonify({'response': response})
@@ -51,6 +54,7 @@ def add_b_to_a_with_c():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.add_b_to_a_with_c()
 
     return jsonify({'response': response})
@@ -62,6 +66,7 @@ def set_b_to_a():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.set_b_to_a_with_c()
 
     return jsonify({'response': response})
@@ -73,6 +78,7 @@ def mult_a_with_b():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.mult_a_with_b_with_c_and_d()
 
     return jsonify({'response': response})
@@ -84,6 +90,7 @@ def test_a_leq_than_b():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response, result = nm.test_a_lower_eq_than_b_auxc_auxd()
 
     return jsonify({'response': response, 'result': result})
@@ -95,6 +102,7 @@ def test_a_lwr_than_b():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response, result = nm.test_a_lower_than_b_auxc_auxd()
 
     return jsonify({'response': response, 'result': result})
@@ -106,6 +114,7 @@ def push_to_stack():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.push_to_stack(int(request.form['val']))
 
     return jsonify({'response': response})
@@ -117,6 +126,7 @@ def pop_from_stack():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response, msg = nm.pop_from_stack()
 
     return jsonify({'response': response, 'msg': msg})
@@ -128,6 +138,7 @@ def factorial():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response, error_message = nm.factorial(int(request.form['n']))
 
     return jsonify({'response': response, 'error': error_message})
@@ -139,6 +150,7 @@ def power():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response, error_message = nm.power(int(request.form['base']), int(request.form['exp']))
 
     return jsonify({'response': response, 'error': error_message})
@@ -150,6 +162,7 @@ def reset_machine():
     assert request.method == 'POST'
 
     nm.clear_response()
+    nm.append_to_response()
     response = nm.reset_machine()
 
     return jsonify({'response': response})
