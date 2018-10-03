@@ -72,9 +72,9 @@ $ flask run --reload
 ```
 
 ## Contribuindo
-Pull requests são bem vindas, porém, abra um issue para discução primeiro.
+Pull requests são bem vindas, porém, abra um issue para discussão primeiro.
 
 Certifique-se de atualizar os testes de maneira apropriada.
 
 ## Licença
-[MIT](https://choosealicense.com/licenses/mit/)
+Esse projeto é licenciado utilizando uma licença MIT, os termos completos da licença podem ser encontrados em: [MIT Licence](https://choosealicense.com/licenses/mit/)
